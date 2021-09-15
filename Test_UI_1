@@ -1,0 +1,25 @@
+from guizero import *
+
+
+def windowOne():
+    global window1
+    window1 = Window(app, title="Input Test")
+    userInput = TextBox(window1)
+    nextPageButton = PushButton(window1, command=windowTwoRef, text="Next Page")
+
+    global data
+    data = userInput.value
+    return data
+
+def windowTwoRef():
+    windowTwo(data)
+
+def windowTwo(info):
+    window2=Window(app,title="Input Result Test")
+    outputText = Text(window2, text="your data is: {}".format(info))
+
+
+app = App(title="Hello World", layout="auto")
+windowOneButton = PushButton(app, command=windowOne, text="Next Page")
+
+app.display()
